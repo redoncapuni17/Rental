@@ -26,6 +26,9 @@ class RentalBooking(models.Model):
     customer_id = fields.Many2one('rental.customer', string="Customer", required=True)
     car_id = fields.Many2one('rental.car', string="Car", required=True )
 
+    contract_ids = fields.One2many('rental.contract', 'booking_id', string='Contracts')
+    contract_count = fields.Integer(string="Contracts", compute='_compute_contract_count')
+
     @api.model
     def create(self, vals_list):
         if vals_list.get('name', 'New') == 'New':
@@ -52,3 +55,46 @@ class RentalBooking(models.Model):
                 booking.total_price = booking.duration * booking.rent_price
             else:
                 booking.total_price = 0.0
+
+
+    def action_confirm(self):
+        for booking in self:
+            booking.status = 'confirmed'
+
+            contract = self.env['rental.contract'].search([
+                ('booking_id', '=', booking.id),
+            ], limit=1)
+            if not contract:
+                self.env['rental.contract'].create({
+                    'booking_id': booking.id,
+                    'customer_id': booking.customer_id.id,
+                    'car_id': booking.car_id.id,
+                    'start_date': booking.start_date,
+                    'end_date': booking.end_date,
+                    'total_price': booking.total_price,
+                })
+
+    def action_reset_to_draft(self):
+        for booking in self:
+            booking.status = 'draft'
+
+    def action_cancelled(self):
+        for booking in self:
+            booking.status = 'cancelled'
+
+    @api.depends('contract_ids')
+    def _compute_contract_count(self):
+        for record in self:
+            record.contract_count = len(record.contract_ids)
+
+
+    def action_view_contract(self):
+        self.ensure_one()
+        return {
+            'name': 'Contracts',
+            'type': 'ir.actions.act_window',
+            'res_model': 'rental.contract',
+            'view_mode': 'tree,form',
+            'domain': [('booking_id', '=', self.id)],
+            'target': 'current',
+        }

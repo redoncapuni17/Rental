@@ -11,3 +11,6 @@ class RentalCustomer(models.Model):
     address = fields.Text('Address')
     driver_license = fields.Char('Driver License Number')
     image = fields.Image(string='Image')
+
+    # One2many relationship
+    # booking_ids = fields.One2many('rental.booking', 'customer_id', string='Bookings')

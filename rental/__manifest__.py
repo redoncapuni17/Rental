@@ -1,5 +1,5 @@
 {
-    'name': 'Rental',
+    'name': 'Rental Car',
     'version': '1.0',
     'summary': 'Rental Summery',
     'description': 'Rental application',

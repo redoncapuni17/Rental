@@ -8,27 +8,39 @@
             <field name="arch" type="xml">
                 <form string="Booking">
                     <header>
+                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" invisible="status == 'confirmed' or status == 'cancelled'"/>
+                        <button name="action_reset_to_draft" type="object" string="Reset to Draft" invisible="status == 'draft'"/>
+                        <button name="action_cancelled" type="object" string="Cancel" class="btn-danger" invisible="status == 'cancelled'" />
                         <field name="status" widget="statusbar"/>
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_contract" type="object"  class="oe_stat_button" icon="fa-file">
+                                <div class="o_stat_info">
+                                    <field name="contract_count" class="o_stat_value"/>
+                                    <span class="o_stat_text">Contracts</span>
+                                </div>
+                            </button>
+                        </div>
+
                         <div class="oe_title">
                             <label for="name"/>
                             <h1><field name="name" readonly="1"/></h1>
                         </div>
                          <group>
                              <group>
-                                 <field name="customer_id"/>
-                                 <field name="car_id"/>
-                                 <field name="rent_price"/>
+                                 <field name="customer_id" readonly="status != 'draft'"/>
+                                 <field name="car_id" readonly="status != 'draft'"/>
+                                 <field name="rent_price" readonly="status != 'draft'"/>
                              </group>
                              <group>
 
-                                 <field name="start_date"/>
-                                 <field name="end_date"/>
-                                 <field name="duration"/>
+                                 <field name="start_date" readonly="status != 'draft'"/>
+                                 <field name="end_date" readonly="status != 'draft'"/>
+                                 <field name="duration" readonly="status != 'draft'"/>
                                  <h1>
                                      <label for="total_price" />
-                                     <field name="total_price"/>
+                                     <field name="total_price" readonly="status != 'draft'"/>
                                  </h1>
                              </group>
                          </group>

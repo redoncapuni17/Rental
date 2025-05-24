@@ -2,7 +2,7 @@
 <odoo>
     <data>
 
-        <menuitem id="rental_menu" name="Rental" sequence="10" />
+        <menuitem id="rental_menu" name="Car" sequence="10" />
 
         <menuitem id="cars_id" name="Cars"  parent="rental_menu" action="car_act_window"/>
         <menuitem id="rental_customer_menu" name="Customers" parent="rental_menu" action="rental_customer_action"/>

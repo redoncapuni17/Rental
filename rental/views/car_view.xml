@@ -62,53 +62,45 @@
             <field name="name">rental.car.kanban</field>
             <field name="model">rental.car</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_mobile">
-                    <field name="name"/>
-                    <field name="image"/>
-                    <field name="status"/>
-                    <field name="rent_price"/>
-                    <field name="model"/>
-                    <field name="year"/>
-                    <field name="fuel_type"/>
-                    <field name="transmission"/>
+               <kanban class="o_kanban_mobile">
+    <field name="id"/>
+    <field name="name"/>
+    <field name="image"/>
+    <field name="status"/>
+    <field name="rent_price"/>
+    <field name="model"/>
+    <field name="year"/>
+    <field name="fuel_type"/>
+    <field name="transmission"/>
 
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_card oe_kanban_card_#{record.status.raw_value}" style="border: 1px solid #ddd; border-radius: 8px; padding: 10px; background-color: #fff;">
-                                <!-- Image -->
-                                <div class="o_kanban_image" style="text-align:center;">
-                                    <field name="image" widget="image"  />
-                                </div>
+    <templates>
+        <t t-name="kanban-box">
+            <div t-att-data-id="record.id" t-attf-class="oe_kanban_card oe_kanban_card_#{record.status.raw_value}" style="border: 1px solid #ddd; border-radius: 8px; padding: 10px; background-color: #fff;">
+                <!-- Image -->
+                <div class="o_kanban_image" style="text-align:center;">
+                    <field name="image" widget="image"  />
+                </div>
 
-                                <!-- Name -->
-                                <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
-                                   <div style="margin-top: 10px;">
-                                    <strong style="font-size: 16px; color: #2c3e50;">
-                                        <field name="name"/>
-                                    </strong>
-                                </div>
+                <!-- Name -->
+                <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
+                   <div style="margin-top: 10px;">
+                    <strong style="font-size: 16px; color: #2c3e50;">
+                        <field name="name"/>
+                    </strong>
+                </div>
 
-                                <!-- Price -->
-                                <div style="margin-top: 10px; font-weight: bold; font-size: 14px; color: #27ae60;">
-                                     <strong style="font-size: 16px;">
-                                        <field name="rent_price"/>
-                                    </strong>
-                                </div>
-                                </div>
+                <!-- Price -->
+                <div style="margin-top: 10px; font-weight: bold; font-size: 14px; color: #27ae60;">
+                     <strong style="font-size: 16px;">
+                        <field name="rent_price"/>
+                    </strong>
+                </div>
+                </div>
+            </div>
+        </t>
+    </templates>
+</kanban>
 
-
-
-<!--                                &lt;!&ndash; Info &ndash;&gt;-->
-<!--                                <div style="font-size: 13px; color: #555; margin-top: 6px;">-->
-<!--                                    <span><i class="fa fa-calendar" style="margin-right:4px;"></i><field name="year"/></span><br/>-->
-<!--                                    <span><i class="fa fa-cogs" style="margin-right:4px;"></i><field name="transmission"/></span><br/>-->
-<!--                                </div>-->
-
-
-                            </div>
-                        </t>
-                    </templates>
-                </kanban>
             </field>
         </record>
 

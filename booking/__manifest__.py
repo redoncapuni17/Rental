@@ -7,10 +7,11 @@
     'sequence': -199,
     'author': 'Redon',
     'website': 'Website',
-    'depends': ['base', 'rental'],
+    'depends': ['base','rental'],
     'data': [
         'data/booking_sequence.xml',
         'views/booking_view.xml',
+        'views/contract_view.xml',
         'views/menu_view.xml',
     ],
     'demo': [],

@@ -6,5 +6,8 @@
 
         <menuitem name="Booking" id="booking_menu" parent="reservation_menu" action="booking_act_window"/>
 
+        <menuitem name="Contract" id="contract_menu" parent="reservation_menu" action="contract_act_window"/>
+
+
     </data>
 </odoo>
