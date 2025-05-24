@@ -1,0 +1,21 @@
+{
+    'name': 'Rental',
+    'version': '1.0',
+    'summary': 'Rental Summery',
+    'description': 'Rental application',
+    'category': 'Ride-Sharing',
+    'sequence': -200,
+    'author': 'Redon',
+    'website': 'Website',
+    'depends': ['base'],
+    'data': [
+        'views/car_view.xml',
+        'views/customer_view.xml',
+        'views/tags_view.xml',
+        'views/menu_view.xml',
+    ],
+    'demo': [],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+}

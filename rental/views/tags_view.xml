@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="tags_form_view" model="ir.ui.view">
+            <field name="name">rental.tags.form</field>
+            <field name="model">rental.tags</field>
+            <field name="arch" type="xml">
+                <form string="Tags">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="description"/>
+                            </group>
+                            <group>
+                                <field name="color" widget="color_picker"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tags_tree_view" model="ir.ui.view">
+            <field name="name">rental.tags.tree</field>
+            <field name="model">rental.tags</field>
+            <field name="arch" type="xml">
+                <tree string="Tags">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="color" widget="color_picker"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="tags_search_view" model="ir.ui.view">
+            <field name="name">rental.tags.search</field>
+            <field name="model">rental.tags</field>
+            <field name="arch" type="xml">
+                <search string="Tags">
+                    <group expand="1" string="Group By">
+                        <filter string="Example Field" name="name" domain="[]"
+                                context="{'group_by':'name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="tags_act_window" model="ir.actions.act_window">
+            <field name="name">Tags</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rental.tags</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Tags.
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

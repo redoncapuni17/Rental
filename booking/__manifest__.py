@@ -1,0 +1,20 @@
+{
+    'name': 'Rental Booking',
+    'version': '1.0',
+    'summary': 'Rental Booking',
+    'description': 'Rental booking application',
+    'category': 'Ride-Sharing',
+    'sequence': -199,
+    'author': 'Redon',
+    'website': 'Website',
+    'depends': ['base', 'rental'],
+    'data': [
+        'data/booking_sequence.xml',
+        'views/booking_view.xml',
+        'views/menu_view.xml',
+    ],
+    'demo': [],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+}

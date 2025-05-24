@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="booking_form_view" model="ir.ui.view">
+            <field name="name">rental.booking.form</field>
+            <field name="model">rental.booking</field>
+            <field name="arch" type="xml">
+                <form string="Booking">
+                    <header>
+                        <field name="status" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                         <group>
+                             <group>
+                                 <field name="customer_id"/>
+                                 <field name="car_id"/>
+                                 <field name="rent_price"/>
+                             </group>
+                             <group>
+
+                                 <field name="start_date"/>
+                                 <field name="end_date"/>
+                                 <field name="duration"/>
+                                 <h1>
+                                     <label for="total_price" />
+                                     <field name="total_price"/>
+                                 </h1>
+                             </group>
+                         </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="booking_tree_view" model="ir.ui.view">
+            <field name="name">rental.booking.tree</field>
+            <field name="model">rental.booking</field>
+            <field name="arch" type="xml">
+                <tree string="Booking">
+                    <field name="name"/>
+                    <field name="customer_id"/>
+                    <field name="car_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="total_price" sum="Total Price"/>
+                    <field name="status" widget="badge"
+                           decoration-success="status == 'done'"
+                           decoration-info="status == 'confirmed'"
+                           decoration-muted="status == 'draft'"
+                           decoration-danger="status == 'cancelled'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="booking_search_view" model="ir.ui.view">
+            <field name="name">rental.booking.search</field>
+            <field name="model">rental.booking</field>
+            <field name="arch" type="xml">
+               <search string="Search Bookings">
+                    <field name="name"/>
+                    <field name="customer_id"/>
+                    <field name="car_id"/>
+                    <field name="status"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Status" name="group_by_status" context="{'group_by':'status'}"/>
+                        <filter string="Customer" name="group_by_customer" context="{'group_by':'customer_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="booking_act_window" model="ir.actions.act_window">
+            <field name="name">Booking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rental.booking</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Booking.
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

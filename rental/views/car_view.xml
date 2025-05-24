@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record id="car_form_view" model="ir.ui.view">
+            <field name="name">rental.car.form</field>
+            <field name="model">rental.car</field>
+            <field name="arch" type="xml">
+                <form string="Car">
+                    <header>
+                        <field name="status" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <field name="image" widget='image' class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1><field name="name" placeholder="Enter Car Name"/></h1>
+                        </div>
+                        <group>
+                            <field name="license_plate"/>
+                            <field name="model"/>
+                            <field name="year"/>
+                            <field name="fuel_type"/>
+                            <field name="transmission"/>
+                            <field name="seat_count"/>
+                            <field name="rent_price"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        </group>
+<!--                        <page name="Bookings" >-->
+<!--                            <field name="booking_ids">-->
+<!--                               <tree/>-->
+<!--                            </field>-->
+<!--                        </page>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="car_tree_view" model="ir.ui.view">
+            <field name="name">rental.car.tree</field>
+            <field name="model">rental.car</field>
+            <field name="arch" type="xml">
+                <tree string="Cars">
+                    <field name="name"/>
+                    <field name="license_plate"/>
+                    <field name="model"/>
+                    <field name="year"/>
+                    <field name="fuel_type"/>
+                    <field name="transmission"/>
+                    <field name="seat_count"/>
+                    <field name="rent_price"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+
+          <!-- Kanban View -->
+        <record id="car_kanban_view" model="ir.ui.view">
+            <field name="name">rental.car.kanban</field>
+            <field name="model">rental.car</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="name"/>
+                    <field name="image"/>
+                    <field name="status"/>
+                    <field name="rent_price"/>
+                    <field name="model"/>
+                    <field name="year"/>
+                    <field name="fuel_type"/>
+                    <field name="transmission"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_card_#{record.status.raw_value}" style="border: 1px solid #ddd; border-radius: 8px; padding: 10px; background-color: #fff;">
+                                <!-- Image -->
+                                <div class="o_kanban_image" style="text-align:center;">
+                                    <field name="image" widget="image"  />
+                                </div>
+
+                                <!-- Name -->
+                                <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
+                                   <div style="margin-top: 10px;">
+                                    <strong style="font-size: 16px; color: #2c3e50;">
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+
+                                <!-- Price -->
+                                <div style="margin-top: 10px; font-weight: bold; font-size: 14px; color: #27ae60;">
+                                     <strong style="font-size: 16px;">
+                                        <field name="rent_price"/>
+                                    </strong>
+                                </div>
+                                </div>
+
+
+
+<!--                                &lt;!&ndash; Info &ndash;&gt;-->
+<!--                                <div style="font-size: 13px; color: #555; margin-top: 6px;">-->
+<!--                                    <span><i class="fa fa-calendar" style="margin-right:4px;"></i><field name="year"/></span><br/>-->
+<!--                                    <span><i class="fa fa-cogs" style="margin-right:4px;"></i><field name="transmission"/></span><br/>-->
+<!--                                </div>-->
+
+
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+
+
+        <!-- Search View -->
+        <record id="car_search_view" model="ir.ui.view">
+            <field name="name">rental.car.search</field>
+            <field name="model">rental.car</field>
+            <field name="arch" type="xml">
+                <search string="Search Cars">
+                    <field name="name"/>
+                    <field name="license_plate"/>
+                    <field name="fuel_type"/>
+                    <field name="status"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Fuel Type" name="group_by_fuel" context="{'group_by':'fuel_type'}"/>
+                        <filter string="Status" name="group_by_status" context="{'group_by':'status'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="car_act_window" model="ir.actions.act_window">
+            <field name="name">Cars</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rental.car</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    No cars found. Click to create a new car.
+                </p>
+            </field>
+        </record>
+
+
+
+
+    </data>
+</odoo>

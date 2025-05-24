@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Reservation" id="reservation_menu" sequence="10"/>
+
+        <menuitem name="Booking" id="booking_menu" parent="reservation_menu" action="booking_act_window"/>
+
+    </data>
+</odoo>

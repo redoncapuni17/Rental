@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Form View -->
+        <record id="rental_customer_form_view" model="ir.ui.view">
+            <field name="name">rental.customer.form</field>
+            <field name="model">rental.customer</field>
+            <field name="arch" type="xml">
+                <form string="Customer">
+                    <sheet>
+                        <field name="image" widget='image' class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1><field name="name" placeholder="Customer Name"/></h1>
+                        </div>
+                        <group>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="address"/>
+                            <field name="driver_license"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="rental_customer_tree_view" model="ir.ui.view">
+            <field name="name">rental.customer.tree</field>
+            <field name="model">rental.customer</field>
+            <field name="arch" type="xml">
+                <tree string="Customers">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="driver_license"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="rental_customer_search_view" model="ir.ui.view">
+            <field name="name">rental.customer.search</field>
+            <field name="model">rental.customer</field>
+            <field name="arch" type="xml">
+                <search string="Search Customers">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <group expand="1" string="Group By">
+
+                        <filter string="Name" name="group_by_name" context="{'group_by': 'name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="rental_customer_action" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rental.customer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+    </data>
+</odoo>
