@@ -78,6 +78,12 @@ class RentalBooking(models.Model):
         for booking in self:
             booking.status = 'draft'
 
+            contract = self.env['rental.contract'].search([
+                ('booking_id', '=', booking.id),
+            ], limit=1)
+            if contract:
+                contract.unlink()
+
     def action_cancelled(self):
         for booking in self:
             booking.status = 'cancelled'

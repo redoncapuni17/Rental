@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <form string="Car">
                     <header>
-                        <field name="status" widget="statusbar"/>
+                        <field name="status" widget="statusbar" options="{'clickable':1}"/>
                     </header>
                     <sheet>
                         <field name="image" widget='image' class="oe_avatar"/>
@@ -51,7 +51,10 @@
                     <field name="transmission"/>
                     <field name="seat_count"/>
                     <field name="rent_price"/>
-                    <field name="status"/>
+                    <field name="status" widget="badge"
+                           decoration-success="status == 'rented'"
+                           decoration-muted="status == 'available'"
+                           decoration-danger="status == 'maintenance'"/>
                 </tree>
             </field>
         </record>
@@ -66,7 +69,7 @@
     <field name="id"/>
     <field name="name"/>
     <field name="image"/>
-    <field name="status"/>
+    <field name="status" />
     <field name="rent_price"/>
     <field name="model"/>
     <field name="year"/>

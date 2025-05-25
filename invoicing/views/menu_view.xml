@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Invoice"  id="invoice_menu" />
+
+
+        <menuitem name="Invoices" id="invoices_menu" parent="invoice_menu"  action="invoice_act_window"/>
+    </data>
+</odoo>

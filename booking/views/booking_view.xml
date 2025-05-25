@@ -14,7 +14,7 @@
                         <field name="status" widget="statusbar"/>
                     </header>
                     <sheet>
-                        <div class="oe_button_box" name="button_box">
+                        <div class="oe_button_box" name="button_box" invisible="status == 'draft'">
                             <button name="action_view_contract" type="object"  class="oe_stat_button" icon="fa-file">
                                 <div class="o_stat_info">
                                     <field name="contract_count" class="o_stat_value"/>
