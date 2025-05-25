@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_rental_invoice_payment_wizard_form" model="ir.ui.view">
+        <field name="name">rental.invoice.payment.wizard.form</field>
+        <field name="model">rental.invoice.payment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Register Payment">
+                <group>
+
+                    <field name="invoice_id" />
+                    <field name="date"/>
+
+                </group>
+                <footer>
+                    <button name="action_register_payment" type="object" string="Register" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+        </record>
+    </data>
+</odoo>

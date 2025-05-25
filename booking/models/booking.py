@@ -24,7 +24,7 @@ class RentalBooking(models.Model):
 
     # Many2one relationship
     customer_id = fields.Many2one('rental.customer', string="Customer", required=True)
-    car_id = fields.Many2one('rental.car', string="Car", required=True )
+    car_id = fields.Many2one('rental.car', string="Car", required=True , domain=[('status', '=', 'available')])
 
     contract_ids = fields.One2many('rental.contract', 'booking_id', string='Contracts')
     contract_count = fields.Integer(string="Contracts", compute='_compute_contract_count')

@@ -10,6 +10,7 @@
     'depends': ['base','booking'],
     'data': [
         'views/invoice_view.xml',
+        'wizard/invoice_payment_view.xml',
         'views/menu_view.xml',
     ],
     'demo': [],
