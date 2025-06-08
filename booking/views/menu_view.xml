@@ -2,7 +2,7 @@
 <odoo>
     <data>
 
-        <menuitem name="Reservationssss" id="reservation_menu" sequence="10"/>
+        <menuitem name="Res" id="reservation_menu" sequence="10"/>
 
         <menuitem name="Booking" id="booking_menu" parent="reservation_menu" action="booking_act_window"/>
 
