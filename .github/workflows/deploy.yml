@@ -29,5 +29,5 @@ jobs:
           cd /home/redon_admin/rental_project
           git pull origin main
           # restart docker compose or your service
-          docker-compose down
-          docker-compose up -d
+          docker compose down
+          docker compose up -d
