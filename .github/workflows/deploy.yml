@@ -1,0 +1,33 @@
+name: Deploy to VM
+
+on:
+  push:
+    branches:
+      - main   # Or your default branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Run tests (optional)
+      run: |
+        echo "Add your tests here"
+        # e.g. run python tests or linters
+
+    - name: Deploy to VM via SSH
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.VM_HOST }}
+        username: ${{ secrets.VM_USER }}
+        key: ${{ secrets.VM_SSH_KEY }}
+        port: 22
+        script: |
+          cd /home/redon_admin/rental_project
+          git pull origin main
+          # restart docker compose or your service
+          docker-compose down
+          docker-compose up -d
