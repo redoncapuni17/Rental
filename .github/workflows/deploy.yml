@@ -18,7 +18,7 @@ jobs:
         echo "Add your tests here"
         # e.g. run python tests or linters
 
-    - name: Deploy to VM via SSH
+    - name: Deploy only custom-addons to VM
       uses: appleboy/ssh-action@v0.1.7
       with:
         host: ${{ secrets.VM_HOST }}
@@ -26,8 +26,7 @@ jobs:
         key: ${{ secrets.VM_SSH_KEY }}
         port: 22
         script: |
-          cd /home/redon_admin/rental_project
+          cd /home/redon_admin/rental_project/custom-addons
           git pull origin main
-          # restart docker compose or your service
           docker compose down
           docker compose up -d
