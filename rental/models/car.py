@@ -7,7 +7,7 @@ class RentalCar(models.Model):
     _name = 'rental.car'
     _description = 'Car Description'
 
-    name = fields.Char('Car Name', required=True)
+    name = fields.Char('Name', required=True)
     license_plate = fields.Char('License Plate', required=True)
     model = fields.Char('Model', required=True)
     year = fields.Integer('Year', required=True)
