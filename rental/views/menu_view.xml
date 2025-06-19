@@ -9,6 +9,8 @@
 
         <menuitem id="settings_menu" name="Settings" parent="rental_menu">
                <menuitem name="Tags" id="tags_menu"  action="tags_act_window"/>
+             <menuitem name="Category" id="category_menu"  action="category_act_window"/>
+
         </menuitem>
     </data>
 </odoo>

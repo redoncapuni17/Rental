@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+
+
+        <record id="category_tree_view" model="ir.ui.view">
+            <field name="name">rental.category.tree</field>
+            <field name="model">rental.category</field>
+            <field name="arch" type="xml">
+                <tree string="Category" editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="category_search_view" model="ir.ui.view">
+            <field name="name">rental.category.search</field>
+            <field name="model">rental.category</field>
+            <field name="arch" type="xml">
+                <search string="Category">
+                      <field name="name"/>
+               </search>
+            </field>
+        </record>
+
+        <record id="category_act_window" model="ir.actions.act_window">
+            <field name="name">Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rental.category</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Category.
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

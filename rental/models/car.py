@@ -31,5 +31,11 @@ class RentalCar(models.Model):
 
     # Many2one relationship
     tag_ids = fields.Many2many('rental.tags', string='Tags')
+    pricing_ids = fields.One2many('rental.pricing','car_id')
+
+
+    extra_hours = fields.Float(string='Extra Hours')
+    extra_days = fields.Float(string='Extra Days')
+    category_id = fields.Many2one('rental.category', string='Category')
 
 

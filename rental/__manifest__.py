@@ -12,6 +12,7 @@
         'views/car_view.xml',
         'views/customer_view.xml',
         'views/tags_view.xml',
+        'views/category_view.xml',
         'views/menu_view.xml',
     ],
     'demo': [],

@@ -18,6 +18,7 @@
                             <h1><field name="name" placeholder="Enter Car Name"/></h1>
                         </div>
                         <group>
+                            <field name="category_id"/>
                             <field name="license_plate"/>
                             <field name="model"/>
                             <field name="year"/>
@@ -27,11 +28,26 @@
                             <field name="rent_price"/>
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                         </group>
-<!--                        <page name="Bookings" >-->
-<!--                            <field name="booking_ids">-->
-<!--                               <tree/>-->
-<!--                            </field>-->
-<!--                        </page>-->
+                        <notebook>
+                            <page string="Rental">
+                                <group>
+                                    <group string="Rental Pricing">
+                                    <field name="pricing_ids">
+                                        <tree editable="bottom">
+
+                                            <field name="duration"/>
+                                            <field name="unit"/>
+                                            <field name="price"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                                <group string="Delay Costs">
+                                    <field name="extra_hours"/>
+                                    <field name="extra_days"/>
+                                </group>
+                                </group>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
