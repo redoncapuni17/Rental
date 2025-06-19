@@ -31,13 +31,13 @@
                              <group>
                                  <field name="customer_id" readonly="status != 'draft'"/>
                                  <field name="car_id" readonly="status != 'draft'"/>
-                                 <field name="rent_price" readonly="status != 'draft'"/>
+
                              </group>
                              <group>
 
-                                 <field name="start_date" readonly="status != 'draft'"/>
-                                 <field name="end_date" readonly="status != 'draft'"/>
+                                 <field name="start_date" widget="daterange" options="{'end_date_field': 'end_date'}" readonly="status != 'draft'"/>
                                  <field name="duration" readonly="status != 'draft'"/>
+                                  <field name="rent_price" readonly="status != 'draft'"/>
                                  <h1>
                                      <label for="total_price" />
                                      <field name="total_price" readonly="status != 'draft'"/>
