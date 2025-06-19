@@ -11,5 +11,6 @@ class RentalInvoiceLine(models.Model):
                                  domain="[('customer_id', '=', customer_id)]")
 
     car_id = fields.Many2one('rental.car', related="booking_id.car_id", string='Car', required=True)
+    rent_price = fields.Float(string='Rent Price', related="booking_id.rent_price", required=True)
     duration = fields.Integer(string='Duration', related="booking_id.duration", required=True, help='Duration in days')
-    total_price = fields.Float(string='Total Price', related="booking_id.total_price", required=True, help='Total price for the booking')
+    total_line = fields.Float(string='Total Price', related="booking_id.total_price", required=True, help='Total price for the booking')

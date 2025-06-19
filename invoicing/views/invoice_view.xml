@@ -9,17 +9,29 @@
             <field name="arch" type="xml">
                 <form string="Invoice">
                     <header>
-                        <button name="action_confirm" string="Confirm" type="object" class="btn-primary" invisible="status == 'posted' or status == 'cancelled'" />
-                        <button name="action_register_payment" string="Register Payment" type="object" class="btn-primary" invisible="status == 'draft' or status == 'cancelled'"/>
-                        <button name="action_reset_to_draft" string="Reset To Draft" type="object" class="btn-secondary" invisible="status == 'draft'"/>
-                        <button name="action_cancelled" string="Cancel" type="object" class="btn-danger" invisible="status == 'cancelled' or status == 'posted'"/>
+                        <button name="action_confirm" string="Confirm" type="object" class="btn-primary"
+                                invisible="status == 'posted' or status == 'cancelled'"/>
+                        <button name="action_register_payment" string="Register Payment" type="object"
+                                class="btn-primary" invisible="status == 'draft' or status == 'cancelled'"/>
+                        <button name="action_reset_to_draft" string="Reset To Draft" type="object" class="btn-secondary"
+                                invisible="status == 'draft'"/>
+                        <button name="action_cancelled" string="Cancel" type="object" class="btn-danger"
+                                invisible="status == 'cancelled' or status == 'posted'"/>
                         <field name="status" widget="statusbar" statusbar_visible="draft,posted"/>
                     </header>
                     <sheet>
+                        <field name="payment_method" invisible="1"/>
+                        <widget name="web_ribbon" title="Paid"
+                                invisible="status != 'posted' or payment_method != 'paid'"/>
+                        <widget name="web_ribbon" title="Not Paid"
+                                invisible="status != 'posted' or payment_method != 'unpaid'" bg_color="bg-danger"/>
+                        <widget name="web_ribbon" title="Partial"
+                                invisible="status != 'posted' or payment_method != 'partial'" bg_color="bg-primary"/>
+
                         <div class="oe_title">
-                            <label for="name"/>
+                            <label for="invoice_nr"/>
                             <h1>
-                                <field name="name" placeholder="Invoice Number"/>
+                                <field name="invoice_nr" placeholder="Invoice Number"/>
                             </h1>
                         </div>
                         <group>
@@ -27,23 +39,45 @@
                                 <field name="customer_id"/>
                             </group>
                             <group>
-                                    <field name="date"/>
+                                <field name="date"/>
                             </group>
                         </group>
 
                         <notebook>
                             <page string="Invoice Lines">
-                            <field name="invoice_line_ids" context="{'default_invoice_id': active_id}" >
-                                <tree editable="bottom">
-                                    <field name="customer_id" optional="hidden"/>
-                                    <field name="booking_id"/>
-                                    <field name="car_id"/>
-                                    <field name="duration"/>
-                                    <field name="total_price"/>
-                                </tree>
-                            </field>
-                        </page>
+                                <field name="invoice_line_ids" context="{'default_invoice_id': active_id}">
+                                    <tree editable="bottom">
+                                        <field name="customer_id" optional="hidden"/>
+                                        <field name="booking_id"/>
+                                        <field name="car_id"/>
+                                        <field name="rent_price"/>
+                                        <field name="duration"/>
+                                        <field name="total_line"/>
+                                    </tree>
+                                </field>
+                            </page>
                         </notebook>
+                        <div class="mt-2  d-flex flex-column align-items-end align-content-center">
+                            <div>
+                                <span class="me-1">Total:</span>
+                                <strong class="h2">
+                                    <field name="total_invoice_price"/>
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-end text-muted">
+                            <field name="payment_lines_text" readonly="1" widget="html" nolabel="1"/>
+                        </div>
+                        <div class="mt-3  d-flex flex-column align-items-end align-content-center">
+                            <div>
+                                <span class="me-1">Amount Due:</span>
+                                <strong class="border-top">
+                                    <field name="amount_due" readonly="1"/>
+                                </strong>
+                            </div>
+                        </div>
+                        <div>
+                        </div>
                     </sheet>
                 </form>
             </field>
@@ -55,14 +89,17 @@
             <field name="model">rental.invoice</field>
             <field name="arch" type="xml">
                 <tree string="Invoice">
-                    <field name="name"/>
+                    <field name="invoice_nr"/>
                     <field name="date"/>
                     <field name="customer_id"/>
+                    <field name="payment_method" widget="badge"
+                           decoration-success="payment_method == 'paid'"
+                           decoration-danger="payment_method == 'unpaid'"
+                           decoration-info="payment_method == 'partial'"/>
                     <field name="status" widget="badge"
-                           decoration-success="status == 'paid'"
-                           decoration-info="status == 'partial'"
+                           decoration-success="status == 'posted'"
                            decoration-muted="status == 'draft'"
-                           decoration-danger="status == 'unpaid'"/>
+                           decoration-danger="status == 'cancelled'"/>
                 </tree>
             </field>
         </record>
@@ -73,7 +110,7 @@
             <field name="model">rental.invoice</field>
             <field name="arch" type="xml">
                 <search string="Invoice">
-                    <field name="name"/>
+                    <field name="invoice_nr"/>
                     <field name="customer_id"/>
                     <field name="date"/>
                     <group expand="1" string="Group By">
@@ -95,7 +132,5 @@
                 </p>
             </field>
         </record>
-
-
     </data>
 </odoo>

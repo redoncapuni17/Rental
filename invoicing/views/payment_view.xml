@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="payment_form_view" model="ir.ui.view">
+            <field name="name">rental.payment.form</field>
+            <field name="model">rental.payment</field>
+            <field name="arch" type="xml">
+                <form string="Payment">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="payment_nr"/>
+                            <h1>
+                                <field name="payment_nr" placeholder="Title"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="invoice_id"/>
+                                <field name="amount"/>
+                            </group>
+                            <group>
+                                <field name="customer_id"/>
+                                <field name="payment_date"/>
+                                <field name="payment_method"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="payment_tree_view" model="ir.ui.view">
+            <field name="name">rental.payment.tree</field>
+            <field name="model">rental.payment</field>
+            <field name="arch" type="xml">
+                <tree string="Payment">
+                    <field name="payment_nr"/>
+                    <field name="invoice_id"/>
+                    <field name="customer_id"/>
+                    <field name="payment_date"/>
+                    <field name="amount"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="payment_search_view" model="ir.ui.view">
+            <field name="name">rental.payment.search</field>
+            <field name="model">rental.payment</field>
+            <field name="arch" type="xml">
+                <search string="Payment">
+                   <field name="payment_nr"/>
+                    <field name="invoice_id"/>
+                    <field name="customer_id"/>
+                    <field name="payment_date"/>
+                    <field name="amount"/>
+                    <field name="status"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="payment_act_window" model="ir.actions.act_window">
+            <field name="name">Payment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rental.payment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Payment.
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

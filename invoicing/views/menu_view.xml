@@ -6,5 +6,7 @@
 
 
         <menuitem name="Invoice" id="invoices_menu" parent="invoice_menu"  action="invoice_act_window"/>
+         <menuitem name="Payment" id="payment_menu" parent="invoice_menu" action="payment_act_window"/>
+
     </data>
 </odoo>

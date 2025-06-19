@@ -9,7 +9,9 @@
     'website': 'Website',
     'depends': ['base','booking'],
     'data': [
+        'data/inv_pay_sequence.xml',
         'views/invoice_view.xml',
+        'views/payment_view.xml',
         'wizard/invoice_payment_view.xml',
         'views/menu_view.xml',
     ],
